@@ -90,7 +90,8 @@ namespace Unity.FPS.UI
 
             if (Input.GetAxisRaw(GameConstants.k_AxisNameVertical) != 0)
             {
-                if (EventSystem.current.currentSelectedGameObject == null)
+                // DEBUG --- Ajout d'une vérif qui check si le slider est présent
+                if (EventSystem.current != null && EventSystem.current.currentSelectedGameObject == null && LookSensitivitySlider != null)
                 {
                     EventSystem.current.SetSelectedGameObject(null);
                     LookSensitivitySlider.Select();
