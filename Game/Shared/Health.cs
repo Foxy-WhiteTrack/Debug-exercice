@@ -63,6 +63,11 @@ namespace Unity.FPS.Game
 
         public void Kill()
         {
+            //petite décurité au cas où !!!
+            
+            if (m_IsDead)
+                return;
+            
             CurrentHealth = 0f;
 
             // call OnDamage action
@@ -77,7 +82,8 @@ namespace Unity.FPS.Game
                 return;
 
             // call OnDie action
-            if (CurrentHealth < 0f)
+            // je met la condition que la vie actuelle est inférieur ou égale à 0
+            if (CurrentHealth <= 0f)
             {
                 m_IsDead = true;
                 OnDie?.Invoke();
